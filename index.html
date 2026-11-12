@@ -1,0 +1,386 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Learning Hub</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;background:#071426;color:#e8f1ff;line-height:1.6}
+header{background:#0d2038;padding:18px 7%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;border-bottom:1px solid #1d3855}
+.logo{font-size:23px;font-weight:bold;color:#22d3ee}
+nav{display:flex;gap:16px;flex-wrap:wrap}
+nav a{color:#dce8f5;text-decoration:none;font-size:14px}
+nav a:hover{color:#22d3ee}
+.container{width:86%;max-width:1150px;margin:auto}
+section{padding:60px 0;scroll-margin-top:20px}
+.hero{text-align:center;padding:90px 0}
+.hero h1{font-size:clamp(32px,5vw,52px);margin-bottom:15px}
+.hero h1 span{color:#22d3ee}
+.hero p{max-width:680px;margin:0 auto 25px;color:#b7c9dd}
+.section-title{text-align:center;font-size:30px;margin-bottom:10px}
+.section-desc{text-align:center;color:#9fb4ca;margin-bottom:28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.card,.panel{background:#102640;border:1px solid #24415e;padding:22px;border-radius:12px}
+.card h3,.panel h3{color:#67e8f9;margin-bottom:10px}
+.card p,.panel p{color:#b9c9da;font-size:14px}
+.btn{background:#06b6d4;color:#041522;border:0;padding:12px 20px;border-radius:7px;font-weight:bold;cursor:pointer;margin:6px 4px 0 0}
+.btn:hover{background:#67e8f9}
+.btn.secondary{background:#193752;color:#e8f1ff}
+.detail{display:none;background:#0d2d48;padding:20px;border-radius:10px;margin-top:20px}
+.panel{max-width:900px;margin:auto}
+label{display:block;margin:14px 0 6px}
+input[type=number],textarea{width:100%;padding:12px;border-radius:6px;border:1px solid #45617d;background:#071426;color:white;font:inherit}
+textarea{min-height:110px;resize:vertical}
+.result{margin-top:18px;padding:17px;border-radius:8px;background:#0a1c30;display:none}
+.small{font-size:13px;color:#91a8bf;margin-top:12px}
+.interest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:20px 0}
+.interest{display:flex;align-items:center;gap:10px;padding:12px;background:#0a1c30;border:1px solid #294760;border-radius:8px;cursor:pointer}
+.interest input{accent-color:#22d3ee}
+.tag{display:inline-block;background:#16445b;color:#a5f3fc;padding:4px 9px;border-radius:20px;font-size:12px;margin:7px 4px 0 0}
+.recommendation-card{border-left:4px solid #22d3ee}
+.quiz-option{display:block;width:100%;text-align:left;padding:13px;margin:9px 0;background:#0a1c30;border:1px solid #35516c;border-radius:7px;color:white;cursor:pointer}
+.quiz-option:hover{border-color:#22d3ee}
+.quiz-option:disabled{opacity:1;cursor:default}
+.sentiment-positive{color:#4ade80!important}
+.sentiment-negative{color:#fb7185!important}
+.sentiment-neutral{color:#facc15!important}
+.chat-panel{max-width:900px;margin:auto}
+.chat-window{height:360px;overflow-y:auto;background:#071426;border:1px solid #294760;border-radius:10px;padding:15px;margin:16px 0}
+.chat-message{max-width:85%;padding:11px 14px;border-radius:12px;margin:10px 0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px}
+.chat-message.bot{background:#16344f;border:1px solid #28516e;margin-right:auto}
+.chat-message.user{background:#07566b;color:#effcff;margin-left:auto}
+.chat-input-row{display:flex;gap:10px;align-items:stretch}
+.chat-input-row input{flex:1;min-width:0;padding:12px;border-radius:7px;border:1px solid #45617d;background:#071426;color:white;font:inherit}
+.chat-input-row .btn{margin:0}
+.chat-suggestions{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.chat-suggestions button{background:#193752;color:#dce8f5;border:1px solid #35516c;padding:8px 11px;border-radius:20px;cursor:pointer}
+.chat-suggestions button:hover{border-color:#22d3ee}
+footer{text-align:center;padding:25px;background:#0d2038;color:#9fb4ca}
+@media(max-width:650px){
+ header{justify-content:center;text-align:center}
+ nav{justify-content:center;gap:11px}
+ .container{width:91%}
+ section{padding:45px 0}
+ .hero{padding:65px 0}
+ .panel{padding:17px}
+ .chat-input-row{flex-direction:column}
+ .chat-input-row .btn{width:100%}
+ .chat-window{height:330px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">AI Learning Hub</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#topics">Topics</a>
+    <a href="#lab">AI Lab</a>
+    <a href="#recommendations">Recommendations</a>
+    <a href="#sentiment">Sentiment AI</a>
+    <a href="#quiz">Quiz</a>
+    <a href="#chatbot">AI Chatbot</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container">
+    <h1>Explore the World of <span>Artificial Intelligence</span></h1>
+    <p>Learn AI through simple explanations, interactive experiments, practical demonstrations and quizzes.</p>
+    <button class="btn" id="startBtn" type="button">Start Learning</button>
+  </div>
+</section>
+
+<section id="topics">
+  <div class="container">
+    <h2 class="section-title">Explore AI Topics</h2>
+    <p class="section-desc">Build your understanding of important AI concepts.</p>
+    <div class="grid">
+      <div class="card"><h3>Machine Learning</h3><p>Learn how computers identify patterns and make predictions from data.</p><button class="btn topicBtn" data-topic="ml" type="button">Learn More</button></div>
+      <div class="card"><h3>Deep Learning</h3><p>Understand neural networks and how machines learn complex patterns.</p><button class="btn topicBtn" data-topic="dl" type="button">Learn More</button></div>
+      <div class="card"><h3>Artificial Intelligence</h3><p>Explore systems that perform tasks requiring intelligent behavior.</p><button class="btn topicBtn" data-topic="ai" type="button">Learn More</button></div>
+    </div>
+    <div class="detail" id="topicDetail"></div>
+  </div>
+</section>
+
+<section id="lab">
+  <div class="container">
+    <h2 class="section-title">Student Performance Predictor</h2>
+    <p class="section-desc">An educational demonstration of the K-Nearest Neighbors algorithm.</p>
+    <div class="panel">
+      <h3>Student Performance Prediction</h3>
+      <label for="hours">Study Hours (0–10)</label><input type="number" id="hours" min="0" max="10" step="0.5" placeholder="Example: 6">
+      <label for="attendance">Attendance Percentage (0–100)</label><input type="number" id="attendance" min="0" max="100" placeholder="Example: 80">
+      <button class="btn" id="predictBtn" type="button">Predict Performance</button><button class="btn secondary" id="resetLabBtn" type="button">Reset</button>
+      <div class="result" id="predictionResult"></div>
+      <p class="small">Educational demo using a small sample dataset, not a real student assessment.</p>
+    </div>
+  </div>
+</section>
+
+<section id="recommendations">
+  <div class="container">
+    <h2 class="section-title">AI Recommendation System</h2><p class="section-desc">Select your interests and discover lessons recommended for you.</p>
+    <div class="panel">
+      <h3>What are you interested in learning?</h3>
+      <div class="interest-grid">
+        <label class="interest"><input type="checkbox" name="interest" value="Machine Learning"> Machine Learning</label>
+        <label class="interest"><input type="checkbox" name="interest" value="Deep Learning"> Deep Learning</label>
+        <label class="interest"><input type="checkbox" name="interest" value="Robotics"> Robotics</label>
+        <label class="interest"><input type="checkbox" name="interest" value="Computer Vision"> Computer Vision</label>
+        <label class="interest"><input type="checkbox" name="interest" value="NLP"> Natural Language Processing</label>
+        <label class="interest"><input type="checkbox" name="interest" value="Data Science"> Data Science</label>
+      </div>
+      <button class="btn" id="recommendBtn" type="button">Get Recommendations</button><button class="btn secondary" id="clearRecommendBtn" type="button">Clear Selection</button>
+      <div class="result" id="recommendationResult"></div><p class="small">This is a rule-based content recommendation demonstration.</p>
+    </div>
+  </div>
+</section>
+
+<section id="sentiment">
+  <div class="container">
+    <h2 class="section-title">AI Sentiment Analysis</h2><p class="section-desc">Discover how AI analyzes the emotion behind written text.</p>
+    <div class="panel">
+      <h3>Enter Your Sentence</h3><p>Write a sentence in English and let our Naive Bayes model analyze it.</p>
+      <label for="sentimentText">Your Text</label><textarea id="sentimentText" placeholder="Example: I really love learning Artificial Intelligence!"></textarea>
+      <button class="btn" id="analyzeBtn" type="button">Analyze Sentiment</button><button class="btn secondary" id="resetSentimentBtn" type="button">Clear</button>
+      <div class="result" id="sentimentResult" aria-live="polite"><h3 id="sentimentLabel"></h3><p id="sentimentExplanation"></p><p id="sentimentConfidence" class="small"></p></div>
+      <p class="small">Model: Multinomial Naive Bayes with Laplace smoothing. This small educational model uses example training sentences.</p>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="container">
+    <h2 class="section-title">Test Your AI Knowledge</h2><p class="section-desc">Answer these questions and check your understanding.</p>
+    <div class="panel">
+      <div id="quizArea"><h3 id="question">Question</h3><div id="options"></div><p id="feedback" class="small"></p><button class="btn" id="nextBtn" type="button" style="display:none">Next Question</button></div>
+      <div id="quizEnd" style="display:none"><h3>Quiz Completed!</h3><p id="finalScore"></p><button class="btn" id="restartBtn" type="button">Restart Quiz</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="chatbot">
+  <div class="container">
+    <h2 class="section-title">AI Learning Chatbot</h2>
+    <p class="section-desc">Ask simple questions about Artificial Intelligence and learn through conversation.</p>
+    <div class="panel chat-panel">
+      <h3>Chat with AI Learning Assistant</h3>
+      <p>Try asking about AI, Machine Learning, Deep Learning, KNN, NLP, or Neural Networks.</p>
+      <div class="chat-suggestions">
+        <button type="button" class="suggestion">What is AI?</button>
+        <button type="button" class="suggestion">Explain Machine Learning</button>
+        <button type="button" class="suggestion">What is Deep Learning?</button>
+        <button type="button" class="suggestion">What is KNN?</button>
+      </div>
+      <div class="chat-window" id="chatWindow" role="log" aria-live="polite">
+        <div class="chat-message bot">Hello! I am your AI Learning Assistant. Ask me a question about Artificial Intelligence. 😊</div>
+      </div>
+      <form id="chatForm" class="chat-input-row">
+        <input type="text" id="chatInput" placeholder="Type your AI question here..." autocomplete="off" aria-label="Your question">
+        <button class="btn" type="submit">Send Message</button>
+      </form>
+      <button class="btn secondary" id="clearChatBtn" type="button">Clear Chat</button>
+      <p class="small">Learning demo: this version uses predefined topic-based responses in your browser. It is not connected to an online AI model and does not require an API key.</p>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">About AI Learning Hub</h2>
+    <div class="panel">
+      <p>AI Learning Hub is an educational project designed to make Artificial Intelligence easier to understand through interactive learning experiences.</p>
+      <p style="margin-top:12px">It includes AI topic explanations, a student performance predictor, a recommendation system, sentiment analysis, an interactive quiz and a learning chatbot.</p>
+      <p class="small">Created as a practical AI learning project.</p>
+    </div>
+  </div>
+</section>
+</main>
+<footer><p>AI Learning Hub | Learn • Explore • Experiment</p></footer>
+
+<script>
+// 1. TOPIC DETAILS
+document.getElementById("startBtn").addEventListener("click",()=>document.getElementById("topics").scrollIntoView({behavior:"smooth"}));
+const topicDetails={
+ ml:"<h3>Machine Learning</h3><p>Machine Learning allows computers to learn patterns from data and make predictions. Example: spam detection.</p>",
+ dl:"<h3>Deep Learning</h3><p>Deep Learning uses multi-layered neural networks to learn complex patterns. It is used in image and speech recognition.</p>",
+ ai:"<h3>Artificial Intelligence</h3><p>AI focuses on building systems that can perform tasks such as reasoning, learning, problem-solving and decision-making.</p>"
+};
+document.querySelectorAll(".topicBtn").forEach(button=>button.addEventListener("click",function(){
+ const box=document.getElementById("topicDetail");box.innerHTML=topicDetails[this.dataset.topic];box.style.display="block";
+}));
+
+// 2. KNN STUDENT PERFORMANCE PREDICTOR
+const trainingData=[
+ {hours:2,attendance:50,result:"Needs Support"},{hours:3,attendance:60,result:"Needs Support"},{hours:4,attendance:65,result:"Needs Support"},
+ {hours:5,attendance:70,result:"Pass"},{hours:6,attendance:75,result:"Pass"},{hours:7,attendance:80,result:"Pass"},
+ {hours:8,attendance:90,result:"Pass"},{hours:9,attendance:95,result:"Pass"},{hours:1,attendance:40,result:"Needs Support"}
+];
+document.getElementById("predictBtn").addEventListener("click",predictPerformance);
+document.getElementById("resetLabBtn").addEventListener("click",resetLab);
+function predictPerformance(){
+ const hInput=document.getElementById("hours").value,aInput=document.getElementById("attendance").value;
+ const hours=Number(hInput),attendance=Number(aInput),output=document.getElementById("predictionResult");output.style.display="block";
+ if(hInput===""||aInput===""||hours<0||hours>10||attendance<0||attendance>100){output.textContent="Please enter valid values within the given ranges.";return;}
+ const nearest=trainingData.map(s=>({...s,distance:Math.sqrt(Math.pow((hours-s.hours)/10,2)+Math.pow((attendance-s.attendance)/100,2))})).sort((a,b)=>a.distance-b.distance).slice(0,3);
+ const passCount=nearest.filter(s=>s.result==="Pass").length,prediction=passCount>=2?"Pass":"Needs Support";
+ output.innerHTML="<h3>Prediction: "+prediction+"</h3><p>Based on the 3 nearest examples:</p>"+nearest.map(s=>`<p>Study Hours: ${s.hours}, Attendance: ${s.attendance}% — ${s.result}</p>`).join("");
+}
+function resetLab(){document.getElementById("hours").value="";document.getElementById("attendance").value="";document.getElementById("predictionResult").style.display="none";}
+
+// 3. RECOMMENDATION SYSTEM
+const lessons=[
+ {title:"Introduction to Machine Learning",tags:["Machine Learning","Data Science"],level:"Beginner",description:"Understand how computers learn patterns from examples."},
+ {title:"Understanding Neural Networks",tags:["Deep Learning","Machine Learning"],level:"Intermediate",description:"Explore neurons, layers, weights and neural network learning."},
+ {title:"Building Smart Robots",tags:["Robotics"],level:"Beginner",description:"Learn how robots sense their environment and take actions."},
+ {title:"Image Recognition Basics",tags:["Computer Vision","Deep Learning"],level:"Intermediate",description:"Discover how AI identifies objects in images."},
+ {title:"Introduction to NLP",tags:["NLP","Deep Learning"],level:"Beginner",description:"Learn how computers process human language."},
+ {title:"Data Analysis with AI",tags:["Data Science","Machine Learning"],level:"Beginner",description:"Explore data patterns and better decisions."},
+ {title:"Object Detection",tags:["Computer Vision","Machine Learning"],level:"Intermediate",description:"Understand how AI locates objects in images."},
+ {title:"Chatbots and Language Models",tags:["NLP","Deep Learning"],level:"Intermediate",description:"Explore how conversational AI systems work."},
+ {title:"Robotics and Computer Vision",tags:["Robotics","Computer Vision"],level:"Intermediate",description:"Discover how robots use cameras to understand their surroundings."}
+];
+document.getElementById("recommendBtn").addEventListener("click",getRecommendations);
+document.getElementById("clearRecommendBtn").addEventListener("click",clearRecommendations);
+function getRecommendations(){
+ const selected=[...document.querySelectorAll('input[name="interest"]:checked')].map(x=>x.value),output=document.getElementById("recommendationResult");output.style.display="block";
+ if(!selected.length){output.textContent="Please select at least one interest.";return;}
+ const ranked=lessons.map(lesson=>({...lesson,matches:lesson.tags.filter(tag=>selected.includes(tag)).length})).filter(x=>x.matches>0).sort((a,b)=>b.matches-a.matches);
+ output.innerHTML="<h3>Your Personalized Recommendations</h3><div class='grid' style='margin-top:15px'>"+ranked.map(x=>`<div class="card recommendation-card"><h3>${x.title}</h3><p>${x.description}</p><p class="small">Level: ${x.level}</p><p class="small">Matched interests: ${x.matches}</p>${x.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>`).join("")+"</div>";
+}
+function clearRecommendations(){document.querySelectorAll('input[name="interest"]').forEach(x=>x.checked=false);const o=document.getElementById("recommendationResult");o.style.display="none";o.innerHTML="";}
+
+// 4. SENTIMENT ANALYSIS - NAIVE BAYES
+const sentimentTraining=[
+ {text:"i love this amazing wonderful excellent product",label:"Positive"},{text:"this is great happy fantastic and beautiful",label:"Positive"},{text:"i really enjoy this good experience",label:"Positive"},{text:"excellent work i am very satisfied",label:"Positive"},{text:"this is awesome and i like it",label:"Positive"},{text:"what a wonderful and lovely day",label:"Positive"},{text:"i love learning artificial intelligence",label:"Positive"},{text:"this project is very useful and great",label:"Positive"},
+ {text:"i hate this terrible awful product",label:"Negative"},{text:"this is bad sad horrible and disappointing",label:"Negative"},{text:"i dislike this very poor experience",label:"Negative"},{text:"terrible work i am very disappointed",label:"Negative"},{text:"this is boring and frustrating",label:"Negative"},{text:"worst experience i do not like it",label:"Negative"},{text:"i hate this terrible experience",label:"Negative"},{text:"this project is bad and useless",label:"Negative"},
+ {text:"the meeting is scheduled for monday",label:"Neutral"},{text:"the book is on the table",label:"Neutral"},{text:"today is a normal working day",label:"Neutral"},{text:"the class starts at nine o clock",label:"Neutral"},{text:"this is a computer science lesson",label:"Neutral"},{text:"the weather report says it may rain",label:"Neutral"},{text:"i am studying artificial intelligence",label:"Neutral"},{text:"the computer is on the desk",label:"Neutral"}
+];
+function tokenize(text){return text.toLowerCase().match(/[a-z]+/g)||[];}
+function trainNaiveBayes(data){
+ const model={classes:["Positive","Negative","Neutral"],counts:{},wordCounts:{},totals:{},vocabulary:new Set()};
+ model.classes.forEach(label=>{model.counts[label]=0;model.wordCounts[label]={};model.totals[label]=0;});
+ data.forEach(item=>{const label=item.label;model.counts[label]++;tokenize(item.text).forEach(word=>{model.vocabulary.add(word);model.wordCounts[label][word]=(model.wordCounts[label][word]||0)+1;model.totals[label]++;});});
+ return model;
+}
+const sentimentModel=trainNaiveBayes(sentimentTraining);
+function classifySentiment(text){
+ const words=tokenize(text),vocabularySize=sentimentModel.vocabulary.size,totalExamples=sentimentTraining.length,scores={};
+ sentimentModel.classes.forEach(label=>{const prior=sentimentModel.counts[label]/totalExamples;let score=Math.log(prior);words.forEach(word=>{const count=sentimentModel.wordCounts[label][word]||0;score+=Math.log((count+1)/(sentimentModel.totals[label]+vocabularySize));});scores[label]=score;});
+ const ranked=Object.entries(scores).sort((a,b)=>b[1]-a[1]),maxScore=ranked[0][1],expScores=ranked.map(item=>Math.exp(item[1]-maxScore)),total=expScores.reduce((a,b)=>a+b,0);
+ return {label:ranked[0][0],confidence:Math.round(expScores[0]/total*100),words};
+}
+document.getElementById("analyzeBtn").addEventListener("click",analyzeSentiment);
+document.getElementById("resetSentimentBtn").addEventListener("click",resetSentiment);
+function analyzeSentiment(){
+ const text=document.getElementById("sentimentText").value.trim(),output=document.getElementById("sentimentResult"),labelElement=document.getElementById("sentimentLabel"),explanation=document.getElementById("sentimentExplanation"),confidence=document.getElementById("sentimentConfidence");output.style.display="block";
+ if(!text){labelElement.textContent="Please enter a sentence first.";labelElement.className="";explanation.textContent="";confidence.textContent="";return;}
+ if(!tokenize(text).length){labelElement.textContent="Please enter an English sentence.";labelElement.className="";explanation.textContent="This educational model currently analyzes English text.";confidence.textContent="";return;}
+ const result=classifySentiment(text);labelElement.textContent="Sentiment: "+result.label;
+ labelElement.className=result.label==="Positive"?"sentiment-positive":result.label==="Negative"?"sentiment-negative":"sentiment-neutral";
+ explanation.textContent=result.label==="Positive"?"The model predicts a positive sentiment.":result.label==="Negative"?"The model predicts a negative sentiment.":"The model predicts a neutral sentiment.";
+ confidence.textContent="Model score distribution: "+result.confidence+"%. This is not a calibrated real-world confidence score.";
+}
+function resetSentiment(){document.getElementById("sentimentText").value="";document.getElementById("sentimentResult").style.display="none";}
+
+// 5. QUIZ SYSTEM
+const questions=[
+ {q:"What is Artificial Intelligence?",options:["Computer hardware","Technology that performs intelligent tasks","A programming language"],answer:1},
+ {q:"Which field allows computers to learn from data?",options:["Machine Learning","Web Design","Computer Hardware"],answer:0},
+ {q:"What does KNN stand for?",options:["Knowledge Neural Network","K-Nearest Neighbors","Key Node Number"],answer:1},
+ {q:"Which technology is commonly used for image recognition?",options:["Deep Learning","Word Processing","File Management"],answer:0},
+ {q:"What is the purpose of a recommendation system?",options:["Delete user data","Recommend relevant items","Turn off a computer"],answer:1}
+];
+let currentQuestion=0,score=0,answered=false;
+document.getElementById("nextBtn").addEventListener("click",nextQuestion);
+document.getElementById("restartBtn").addEventListener("click",restartQuiz);
+function loadQuestion(){
+ answered=false;const q=questions[currentQuestion];document.getElementById("question").textContent=`Question ${currentQuestion+1}: ${q.q}`;
+ const options=document.getElementById("options");options.innerHTML="";
+ q.options.forEach((option,index)=>{const button=document.createElement("button");button.type="button";button.className="quiz-option";button.textContent=option;button.addEventListener("click",()=>checkAnswer(index));options.appendChild(button);});
+ document.getElementById("feedback").textContent="";document.getElementById("nextBtn").style.display="none";
+}
+function checkAnswer(index){
+ if(answered)return;answered=true;const q=questions[currentQuestion],buttons=document.querySelectorAll(".quiz-option");buttons.forEach(button=>button.disabled=true);
+ if(index===q.answer){score++;document.getElementById("feedback").textContent="Correct answer! Well done.";}
+ else{document.getElementById("feedback").textContent="Incorrect. Correct answer: "+q.options[q.answer];}
+ document.getElementById("nextBtn").style.display="inline-block";
+}
+function nextQuestion(){
+ currentQuestion++;if(currentQuestion<questions.length){loadQuestion();}
+ else{document.getElementById("quizArea").style.display="none";document.getElementById("quizEnd").style.display="block";document.getElementById("finalScore").textContent=`Your score: ${score} out of ${questions.length}`;}
+}
+function restartQuiz(){currentQuestion=0;score=0;document.getElementById("quizArea").style.display="block";document.getElementById("quizEnd").style.display="none";loadQuestion();}
+loadQuestion();
+
+// 6. AI LEARNING CHATBOT (RULE-BASED EDUCATIONAL DEMO)
+const chatWindow=document.getElementById("chatWindow");
+const chatForm=document.getElementById("chatForm");
+const chatInput=document.getElementById("chatInput");
+
+function addChatMessage(message,sender){
+ const bubble=document.createElement("div");
+ bubble.className="chat-message "+sender;
+ bubble.textContent=message;
+ chatWindow.appendChild(bubble);
+ chatWindow.scrollTop=chatWindow.scrollHeight;
+}
+
+function getBotReply(rawMessage){
+ const message=rawMessage.toLowerCase().replace(/[^\w\s]/g," ").replace(/\s+/g," ").trim();
+
+ if(/\b(hi|hello|hey|salam|assalam)\b/.test(message)) return "Hello! Welcome to AI Learning Hub. Ask me anything about AI, Machine Learning, Deep Learning, or related topics.";
+ if(message.includes("what is ai")||message.includes("artificial intelligence")||message==="define ai") return "Artificial Intelligence (AI) is a field of computer science that builds systems able to perform tasks that normally require human intelligence, such as learning, reasoning, problem-solving, perception, and language understanding.\nExample: voice assistants and image recognition systems.";
+ if(message.includes("machine learning")||message.includes("what is ml")) return "Machine Learning (ML) is a branch of AI in which computers learn patterns from data and use those patterns to make predictions or decisions.\nExample: an email spam filter learns to identify unwanted messages.";
+ if(message.includes("deep learning")) return "Deep Learning is a specialized area of Machine Learning that uses neural networks with many layers to learn complex patterns.\nUses include image recognition, speech recognition, and language processing.";
+ if(message.includes("neural network")||message.includes("ann")) return "An Artificial Neural Network (ANN) is a computing model inspired by the brain. It contains connected units called neurons, usually arranged in input, hidden, and output layers. The network learns by adjusting weights.";
+ if(message.includes("knn")||message.includes("k nearest")) return "K-Nearest Neighbors (KNN) is a supervised Machine Learning algorithm. It finds the K closest training examples to a new data point and predicts its class from their majority vote (for classification).";
+ if(message.includes("nlp")||message.includes("natural language")) return "Natural Language Processing (NLP) is a field of AI that helps computers work with human language. Examples include translation, chatbots, text classification, and speech assistants.";
+ if(message.includes("computer vision")) return "Computer Vision enables computers to interpret information from images and videos. Common tasks include image classification, object detection, and face detection.";
+ if(message.includes("robot")) return "Robotics combines areas such as mechanical engineering, electronics, control systems, and AI to build machines that sense their environment and perform actions.";
+ if(message.includes("supervised")) return "Supervised Learning trains a model using labeled examples. Each training example includes input data and the correct output. Examples include spam detection and house-price prediction.";
+ if(message.includes("unsupervised")) return "Unsupervised Learning works with data that has no provided labels. The model tries to discover patterns or groups. A common example is customer clustering.";
+ if(message.includes("reinforcement")) return "Reinforcement Learning trains an agent through interaction with an environment. The agent receives rewards or penalties and learns actions that improve its total reward.";
+ if(message.includes("algorithm")) return "An algorithm is a step-by-step procedure for solving a problem. In AI, algorithms can be used to search, learn patterns, reason, or make decisions.";
+ if(message.includes("data")&&message.includes("training")) return "Training data is the collection of examples used by a Machine Learning model to learn patterns. Good training data should be relevant, sufficiently representative, and as accurate as possible.";
+ if(message.includes("sentiment")) return "Sentiment Analysis is an NLP task that identifies the emotional tone of text, often classifying it as positive, negative, or neutral. This website's demo uses a small Naive Bayes training dataset.";
+ if(message.includes("recommendation")) return "A recommendation system suggests relevant items to users. It may use their interests, past behavior, item similarities, or patterns from many users. Examples include movie and product recommendations.";
+ if(message.includes("python")) return "Python is a popular programming language for AI because it has readable syntax and useful libraries such as NumPy, pandas, scikit-learn, TensorFlow, and PyTorch.";
+ if(message.includes("difference")&&message.includes("ai")&&message.includes("ml")) return "AI is the broad field of creating systems that perform intelligent tasks. Machine Learning is a subset of AI focused on learning patterns from data. Deep Learning is a subset of Machine Learning based on multi-layer neural networks.";
+ if(message.includes("thank")) return "You're welcome! Keep learning and experimenting. 😊";
+ if(message.includes("help")||message.includes("topics")) return "I can explain these topics: Artificial Intelligence, Machine Learning, Deep Learning, Neural Networks, KNN, NLP, Computer Vision, Robotics, supervised learning, unsupervised learning, reinforcement learning, Python, and Sentiment Analysis.";
+ return "I am a beginner-level learning chatbot, and I do not have a prepared answer for that question yet. Try asking about AI, Machine Learning, Deep Learning, Neural Networks, KNN, NLP, Computer Vision, or Python.";
+}
+
+chatForm.addEventListener("submit",function(event){
+ event.preventDefault();
+ const message=chatInput.value.trim();
+ if(!message)return;
+ addChatMessage(message,"user");
+ chatInput.value="";
+ const reply=getBotReply(message);
+ addChatMessage(reply,"bot");
+ chatInput.focus();
+});
+
+document.querySelectorAll(".suggestion").forEach(button=>{
+ button.addEventListener("click",function(){
+  chatInput.value=this.textContent;
+  chatForm.requestSubmit();
+ });
+});
+
+document.getElementById("clearChatBtn").addEventListener("click",function(){
+ chatWindow.innerHTML="";
+ addChatMessage("Chat cleared. What would you like to learn about AI?","bot");
+});
+</script>
+</body>
+</html>
